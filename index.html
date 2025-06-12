@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lot Size Profit Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    #result {
+      font-weight: bold;
+      margin-top: 15px;
+      font-size: 18px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h2>Lot Size Profit Calculator</h2>
+
+  <label>Profit from 0.20 lot size ($):</label>
+  <input type="number" id="profitInput" step="0.01" placeholder="e.g., 3.00">
+
+  <label>Target lot size:</label>
+  <input type="number" id="lotSizeInput" step="0.01" placeholder="e.g., 1.00">
+
+  <button onclick="calculateProfit()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateProfit() {
+      const baseLotSize = 0.20;
+      const baseProfit = parseFloat(document.getElementById("profitInput").value);
+      const newLotSize = parseFloat(document.getElementById("lotSizeInput").value);
+
+      if (isNaN(baseProfit) || isNaN(newLotSize) || baseProfit <= 0 || newLotSize <= 0) {
+        document.getElementById("result").innerText = "Please enter valid values.";
+        return;
+      }
+
+      const newProfit = (newLotSize / baseLotSize) * baseProfit;
+      document.getElementById("result").innerText = `Estimated profit: $${newProfit.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
